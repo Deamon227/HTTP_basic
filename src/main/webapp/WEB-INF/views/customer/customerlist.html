@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table th:border="1">
+    <tr>
+        <td>Id</td>
+        <td style="text-align: center">Customer's name</td>
+        <td style="text-align: center">Customer's type</td>
+        <td>Update</td>
+        <td>Delete</td>
+    </tr>
+    <tr th:each="cu:${customer}">
+        <td th:text="${cu.id}"></td>
+        <td th:text="${cu.name}" style="text-align: center"></td>
+        <td th:text="${cu.getRoleId().name}" style="text-align: center"></td>
+        <td><a th:href="@{/customer/edit/{id}(id = ${cu.id})}">Update</a></td>
+        <td><a th:href="@{/customer/delete/{id}(id = ${cu.id})}">Delete</a></td>
+    </tr>
+</table>
+</body>
+</html>

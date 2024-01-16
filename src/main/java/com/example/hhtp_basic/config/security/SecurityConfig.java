@@ -34,6 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .requestMatchers("/app").permitAll()
                 .requestMatchers("/user**").hasRole("USER")
                 .requestMatchers("/admin**").hasRole("ADMIN")
+                .requestMatchers("/customer**").hasRole("ADMIN")
+                .requestMatchers("/type**").hasRole("ADMIN")
                 .and()
                 .formLogin()
                 .successHandler(new CustomSuccessHandle())
