@@ -34,10 +34,10 @@ public class CustomerController {
         return m;
     }
 
-    @PostMapping("/add")
+    @PostMapping("/create")
     public ModelAndView add(Customer customer){
         customerService.save(customer);
-        ModelAndView m = new ModelAndView("customer/customerlist");
+        ModelAndView m = new ModelAndView("customer/customerlist", "customer", customerService.findAll());
         return m;
     }
 
@@ -45,6 +45,13 @@ public class CustomerController {
     public ModelAndView showUpdate(@PathVariable Long id){
         ModelAndView m = new ModelAndView("customer/updateCustomer", "customer", customerService.findById(id));
         return m;
+    }
+
+    @PostMapping("/edit/{id}")
+    public String update(@PathVariable Long id, @ModelAttribute Customer customer){
+        customer.setId(id);
+        customerService.save(customer);
+        return "redirect:/customer";
     }
 
     @GetMapping("/delete/{id}")

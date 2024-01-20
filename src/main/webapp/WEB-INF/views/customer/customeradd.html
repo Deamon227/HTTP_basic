@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" th:object="${customer}">
+<form method="post" th:object="${customer}" action="/customer/create">
     <div>
         Customer's Name: <input type="text" th:field="*{name}">
     </div>

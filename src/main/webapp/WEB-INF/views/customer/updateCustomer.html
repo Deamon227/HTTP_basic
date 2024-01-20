@@ -5,5 +5,22 @@
     <title>Title</title>
 </head>
 <body>
+<form method="post" th:object="${customer}">
+<div>
+    Customer's Name: <input type="text" th:field="*{name}">
+</div>
+<br>
+<div>
+    Customer's type:
+    <select th:field="*{roleId}">
+        <option th:each="ty:${type}" th:value="${ty.id}" th:text="${ty.name}">
+        </option>
+    </select>
+</div>
+<br>
+<div>
+    <input type="submit" class="btn btn-warning" value="Add">
+</div>
+</form>
 </body>
 </html>

@@ -31,11 +31,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                .requestMatchers("/app").permitAll()
-                .requestMatchers("/user**").hasRole("USER")
-                .requestMatchers("/admin**").hasRole("ADMIN")
-                .requestMatchers("/customer**").hasRole("ADMIN")
-                .requestMatchers("/type**").hasRole("ADMIN")
+                .requestMatchers("/**").permitAll()
+//                .requestMatchers("/user**").hasRole("USER")
+//                .requestMatchers("/admin**").hasRole("ADMIN")
+//                .requestMatchers("/customer**").hasRole("ADMIN")
+//                .requestMatchers("/type**").hasRole("ADMIN")
                 .and()
                 .formLogin()
                 .successHandler(new CustomSuccessHandle())
@@ -44,5 +44,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .and()
                 .exceptionHandling().accessDeniedPage("/accessDenied");
+        http.csrf().disable();
     }
 }
